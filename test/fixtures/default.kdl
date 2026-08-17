@@ -1,0 +1,10 @@
+// Config resembling Zellij's default keybindings layout.
+// Ctrl+P switches to "pane" mode (single-line binding).
+keybinds {
+    normal {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+    }
+    shared_except "pane" "locked" {
+        bind "Ctrl p" { SwitchToMode "Pane"; }
+    }
+}

@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Scenario tests (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Zellij
+        run: |
+          set -euxo pipefail
+          curl -fsSL \
+            "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz" \
+            -o /tmp/zellij.tar.gz
+          tar -xzf /tmp/zellij.tar.gz -C /tmp
+          sudo mv /tmp/zellij /usr/local/bin/zellij
+          zellij --version
+
+      - name: Run scenario tests
+        run: bash test/run-tests.sh
+
+  lint:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Lint scripts
+        run: shellcheck zellij-switch test/run-tests.sh

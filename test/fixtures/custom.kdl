@@ -1,0 +1,12 @@
+// Custom config in the style of Omakub / locked-mode setups.
+// Ctrl+P currently creates a new pane.
+keybinds clear-defaults=true {
+    locked {
+        bind "Ctrl g" { SwitchToMode "normal"; }
+    }
+    shared_among "normal" "locked" {
+        bind "Ctrl p" { NewPane; SwitchToMode "locked"; }
+    }
+}
+
+default_mode "locked"

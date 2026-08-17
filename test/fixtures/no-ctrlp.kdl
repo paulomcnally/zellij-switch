@@ -1,0 +1,7 @@
+// Config with no Ctrl+P binding at all.
+// The a/b patches must detect this and fail loudly instead of no-op'ing.
+keybinds {
+    normal {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+    }
+}

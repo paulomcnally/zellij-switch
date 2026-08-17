@@ -1,0 +1,9 @@
+// Config whose Ctrl+P binding is multi-line.
+// The a/b patches only handle single-line bindings, so this must fail loudly.
+keybinds {
+    normal {
+        bind "Ctrl p" {
+            SwitchToMode "pane"
+        }
+    }
+}
