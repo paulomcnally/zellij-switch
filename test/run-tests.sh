@@ -59,6 +59,7 @@ fresh_sandbox() {
 }
 
 # Validate a config file by asking the real zellij binary to parse it.
+# shellcheck disable=SC2317 # invoked indirectly via assert_ok
 validate_with_zellij() {
     local cfg="$1"
     local dir
